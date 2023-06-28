@@ -24,7 +24,7 @@ This project extends from the [on-screen controls](https://docs.unity3d.com/Pack
 - ### Joystick
   - [`ControlStick`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlStick.cs) is a heavily-improved extension of the [`On-Screen Stick`](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html#on-screen-sticks) component provided by the Input System package. It has a variety of configurable settings, and it can be used for several features that your game may already have, like player movement.
 - ### Touchpad
-  - [`ControlPad`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlPad.cs) is a component that registers input if the touch made contact inside its rect bounds. It's not found in the Input System package by default as it is a custom implementation. It supports multitouch and can be configured and used for a variety of features you may plan on implementing to your project!
+  - [`ControlPad`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlPad.cs) is a component that registers input if the touch made contact within its rect bounds. It's not found in the Input System package by default as it is a custom implementation. It supports multitouch and can be configured and used for a variety of features you may plan on implementing to your project!
 
 <br>
 
