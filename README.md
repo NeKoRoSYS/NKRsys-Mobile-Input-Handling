@@ -37,6 +37,7 @@ This project extends from the [on-screen controls](https://docs.unity3d.com/Pack
 
 ## Usage
 - ### [`ControlButton`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlButton.cs)
+  1. Create a 2D GameObject 
 - ### [`ControlStick`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlStick.cs) 
 - ### [`ControlPad`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlPad.cs)
   
