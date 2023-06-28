@@ -16,3 +16,4 @@ This project extends from the [on-screen controls](https://docs.unity3d.com/Pack
 
 ## Current Limitations
 - [`ControlPad`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlPad.cs) is not event-based. It does not run only when we need to, everything is called in the `Update()` method. This means it is processed every frame even when unnecessary. The main reason why everything is put into `Update()` is to add support for multitouching; IPointerHandler, IPointerUpHander, and IDragHandler only recognizes one pointer and that's it. Although it doesn't seem to affect performance at all, I'll still keep my eyes on this and try to come up with an alternative!
+- UI elements with the [`ControlButton`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlButton.cs) script does not function simultaneously when they are pressed while overlapped on top of each other.
