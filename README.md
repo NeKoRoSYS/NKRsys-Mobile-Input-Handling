@@ -54,6 +54,7 @@ This project extends from the [on-screen controls](https://docs.unity3d.com/Pack
 <br>
 
 ## Usage
+Prefabs are cool and all, but I recommend you to set up the controls from scratch!
 - ### [`ControlButton`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlButton.cs)
   1. Create a 2D GameObject inside the canvas.
   2. Add an `Image` component and change the sprite if applicable.
