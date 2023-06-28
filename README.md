@@ -56,6 +56,15 @@ This project extends from the [on-screen controls](https://docs.unity3d.com/Pack
   8. Assign "Handle" to the `stickHandle` variable.
   9. Hold, drag, and enjoy!!
 - ### [`ControlPad`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlPad.cs)
+  1. Create an empty 2D GameObject inside the canvas and set its rect bounds so that it covers the entire right half of the screen.
+  2. Add an `Image` component and set the colors to transparent.
+  3. Add the  `ControlPad` script.
+  4. Subscribe to the `OnTouchDrag` UnityEvent using another script, which would most likely be your camera controller.
+  ```cs
+  ControlPad controlPad;
+  void Start() => controlPad.OnTouchDrag.AddListener(Something());
+  ```
+  5. Press, drag, look/pan around, and enjoy!!!
   
 <br>
 
