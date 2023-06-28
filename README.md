@@ -5,9 +5,12 @@ NeKoRoSYS's Mobile Input Handling. An open-source project dedicated to providing
 
 ## Features
 This project extends from the [on-screen controls](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html) that Unity's Input System package have provided by default.
-### Button
+- ### Button
 `ControlButton` is an extension of the [`On-Screen Button`](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html#on-screen-buttons) component provided by the Input System package. It can have animated sprites and color fading!
-### Joystick
+- ### Joystick
 `ControlStick` is a heavily-improved extension of the [`On-Screen Stick`](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html#on-screen-sticks) component provided by the Input System package. It has a variety of configurable settings, and it can be used for several features that your game may already have, like player movement.
-### Touchpad
+- ### Touchpad
 `ControlPad` is a component that registers input if the touch made contact inside its rect bounds. It's not found in the Input System package by default as it is a custom implementation. It supports multitouch and can be configured and used for a variety of features you may plan on implementing to your project!
+
+## Current Limitations
+- `ControlPad` is not event-based. It does not run only when we need to, everything is processed in the `Update()` method. The main reason why everything is put into `Update()` is to add support for multitouching; IPointerHandler, IPointerUpHander, and IDragHandler only recognizes one pointer and that's it.
