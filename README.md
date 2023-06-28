@@ -45,7 +45,7 @@ This project extends from the [on-screen controls](https://docs.unity3d.com/Pack
 - ### [`ControlStick`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlStick.cs)
   1. Create a parent 2D GameObject inside the canvas, make sure the rect bounds are big enough to cover a portion of the screen. (I recommend covering the entire half!)
   2. Add an `Image` component to the parent 2D GameObject and make the colors transparent.
-  3. Add the  `ControlStick` script then customize it if necessary.
+  3. Add the  `ControlStick` script then configure it if necessary.
   4. Set the `Control Path` binding.
   5. Create two children 2D GameObjects and add an `Image` component to both of them. Rename the first child to "State," then rename the second child to "Handle" to avoid confusion.
 
