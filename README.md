@@ -5,7 +5,10 @@ NeKoRoSYS's Mobile Input Handling. An open-source project dedicated to providing
 
 ## Before You Use
 Before you use this project as a base for your mobile game, I am putting this here to remind you that this project is currently being actively developed and things are subject to change. Kindly star the repo before using, forking or cloning, please!
-
+### Prerequisites
+  - [The Input System Package](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.6/manual/index.html)
+    - *To install: Editor > Window > Package Manager > Packages: Unity Registry > Input System*
+      
 <br>
 
 | Table of Contents                     |
