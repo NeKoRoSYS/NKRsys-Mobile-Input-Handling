@@ -25,10 +25,13 @@ Before you use this project as a base for your mobile game, I am putting this he
 This project extends from the [on-screen controls](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html) that Unity's Input System package have provided by default.
 - ### Button Implementation
   - [`ControlButton`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlButton.cs) is an extension of the [`On-Screen Button`](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html#on-screen-buttons) component provided by the Input System package. It can have animated sprites and color fading!
+    ![](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/ControlButtonExample.gif)
 - ### Joystick Implementation
   - [`ControlStick`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlStick.cs) is a heavily-improved extension of the [`On-Screen Stick`](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html#on-screen-sticks) component provided by the Input System package. It has a variety of configurable settings, and it can be used for several features that your game may already have, like player movement.
+    ![](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/ControlStickExample.gif)
 - ### Touchpad Implementation
   - [`ControlPad`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlPad.cs) is a component that registers input if the touch made contact within its rect bounds. It's not found in the Input System package by default as it is a custom implementation. It supports multitouch and can be configured and used for a variety of features you may plan on implementing to your project!
+    ![](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/ControlPadExample.gif)
 
 <br>
 
