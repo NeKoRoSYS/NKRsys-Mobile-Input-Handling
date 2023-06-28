@@ -22,7 +22,8 @@ Before you use this project as a base for your mobile game, I am putting this he
 <br>
 
 ## Features
-This project extends from the [on-screen controls](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html) that Unity's Input System package have provided by default.
+This project extends from the [on-screen controls](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html) that Unity's Input System package have provided by default. The following demos are using [(NKRsys-FPP-CC) NeKoRoSYS's First Person Perspective Character Controller](https://github.com/NeKoRoSYS/NKRsys-FPP-CC/blob/main) to showcase the mobile controls.
+
 - ### Button Implementation
   - [`ControlButton`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlButton.cs) is an extension of the [`On-Screen Button`](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html#on-screen-buttons) component provided by the Input System package. It can have animated sprites and color fading!
 
