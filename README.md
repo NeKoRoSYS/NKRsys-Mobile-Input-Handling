@@ -48,7 +48,8 @@ This project extends from the [on-screen controls](https://docs.unity3d.com/Pack
   3. Add the  `ControlStick` script then customize it if necessary.
   4. Set the `Control Path` binding.
   5. Create two children 2D GameObjects and add an `Image` component to both of them. Rename the first child to "State," then rename the second child to "Handle" to avoid confusion.
-  "State" is the background of the joystick, and one can code it so it changes visuals depending on the state of what's being controlled by the joystick (eg. make it color red if active, make it scale bigger or smaller depending on how far the joystick is pushed, etc). On the other hand, "Handle" is what you drag to move the joystick. I have provided sample sprites for you to use if you don't have any!
+
+"State" is the background of the joystick, and one can code it so it changes visuals depending on the state of what's being controlled by the joystick (eg. make it color red if active, make it scale bigger or smaller depending on how far the joystick is pushed, etc). On the other hand, "Handle" is what you drag to move the joystick. I have provided sample sprites for you to use if you don't have any!
   6. Assign the parent 2D GameObject to the `inputArea` variable in the `ControlStick` script.
   7. Assign "State" to the `stickBounds` variable.
   8. Assign "Handle" to the `stickHandle` variable.
