@@ -37,7 +37,11 @@ This project extends from the [on-screen controls](https://docs.unity3d.com/Pack
 
 ## Usage
 - ### [`ControlButton`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlButton.cs)
-  1. Create a 2D GameObject 
+  1. Create a 2D GameObject inside the canvas.
+  2. Add an `Image` component and change the sprite if applicable.
+  3. Add the  `ControlButton` script then customize it if necessary.
+  4. Set the `Control Path` binding.
+  5. Press, release, and enjoy!
 - ### [`ControlStick`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlStick.cs) 
 - ### [`ControlPad`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlPad.cs)
   
