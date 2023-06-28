@@ -5,8 +5,8 @@ NeKoRoSYS's Mobile Input Handling. An open-source project dedicated to providing
 
 ## Features
 ### Buttons
-An extension of the "On-Screen Button" script provided by the Input System package. It can have animated sprites and color fading!
+An extension of the "On-Screen Button" component provided by the Input System package. It can have animated sprites and color fading!
 ### Joystick
-A rich and configurable joystick that can be used for several features that your game may already have, like player movement.
+An a heavily-improved extension of the "On-Screen Stick" component provided by the Input System package. It has a variety of configurable settings, and it can be used for several features that your game may already have, like player movement.
 ### Touchpad
 Supports multitouch! Can be configured and used for a variety of features you may plan on implementing to your project.
