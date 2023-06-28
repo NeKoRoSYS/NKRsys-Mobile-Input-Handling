@@ -3,6 +3,20 @@ NeKoRoSYS's Mobile Input Handling. An open-source project dedicated to providing
 
 <br>
 
+## Before You Use
+Before you use this project as a base for your mobile game, I am putting this here to remind you that this project is currently being actively developed and things are subject to change. Kindly star the repo before using, forking or cloning, please!
+
+<br>
+
+| Table of Contents                     |
+| ------------------------------------- |
+| [Features](#features)                 |
+| [Limitations](#current-limitations)   |
+| [Sponsorship](#sponsorship)           |
+| [Contribution](#contribution)         |
+
+<br>
+
 ## Features
 This project extends from the [on-screen controls](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html) that Unity's Input System package have provided by default.
 - ### Button
@@ -17,3 +31,15 @@ This project extends from the [on-screen controls](https://docs.unity3d.com/Pack
 ## Current Limitations
 - [`ControlPad`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlPad.cs) is not event-based. It does not run only when we need to, everything is called in the `Update()` method. This means it is processed every frame even when unnecessary. The main reason why everything is put into `Update()` is to add support for multitouching; IPointerHandler, IPointerUpHander, and IDragHandler only recognizes one pointer and that's it. Although it doesn't seem to affect performance at all, I'll still keep my eyes on this and try to come up with an alternative!
 - UI elements with the [`ControlButton`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlButton.cs) script does not function simultaneously when they are pressed while overlapped on top of each other.
+
+<br>
+
+## Sponsorship
+I'd really appreciate it if someone were to donate me some cash. I am an aspiring software and game developer that currently do stuff solo, and I need funding to motivate me to do a lot better on my tasks so that I could deliver way better content. Donating is not a must, but it will be immensely cherished and appreciated!
+
+<br>
+
+## Contribution
+Something's wrong with the code or you know better workarounds and alternatives? You can either make an issue or a pull request. It will be very much appreciated!
+
+<br>
