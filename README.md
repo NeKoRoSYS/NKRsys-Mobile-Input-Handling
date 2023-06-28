@@ -69,7 +69,7 @@ This project extends from the [on-screen controls](https://docs.unity3d.com/Pack
 <br>
 
 ## Sponsorship
-I'd really appreciate it if someone were to donate me some cash. I am an aspiring software and game developer that currently do stuff solo, and I need funding to motivate me to do a lot better on my tasks so that I could deliver way better content. Donating is not a must, but it will be immensely cherished and appreciated!
+I am an aspiring software and game developer that currently do stuff solo, and I need funding to motivate me to do a lot better on my tasks so that I could deliver way better content. Donating is not a must, but it will be immensely cherished and appreciated!
 
 <br>
 
