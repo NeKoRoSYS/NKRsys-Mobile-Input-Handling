@@ -20,8 +20,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
         private void Update()
         {
             if (EventSystem.current == null) return;
-            if (availableTouchIds.Count <= touchLimit) GetTouch();
-            ResetTouchpad();
+            if (Touch.activeTouches.Count != 0 && availableTouchIds.Count <= touchLimit) GetTouch();
             if (availableTouchIds.Count == 0) return;
             foreach (var touch in Touch.activeTouches)
                 { if (availableTouchIds.Contains(touch.touchId)) ApplyTouch(touch); }
@@ -41,6 +40,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
 
         private void ApplyTouch(Touch touch)
         {
+            ResetTouchpad();
             if (touch.phase == TouchPhase.Moved)
             {
                 currentPos += touch.delta;
