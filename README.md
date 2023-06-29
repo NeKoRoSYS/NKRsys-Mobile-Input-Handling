@@ -9,7 +9,7 @@ Before you use this project as a base for your mobile game, I am putting this he
   - [The Input System Package](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.6/manual/index.html)
     - *To install: Editor > Window > Package Manager > Packages: Unity Registry > Input System*
 ### Why use the Input System package?
-  - Using the Input System package gives you more advantages than the legacy input system. It has more flexible features and settings that everyone can configure, and it helps make implementing cross-platform play a lot more do-able. This asset utilizes the `On-Screen Control` class provided by the Input System package which lets you configure the button/joystick bindings according to your liking. When combined with events subscription, you don't even have to reference the control scripts just to check if it's "pressed," it gets checked even when not called in the `Update()` method which furthermore improves the game loop's performance.
+  - Using the Input System package gives you more advantages than the legacy input system. It has more flexible features and settings that everyone can configure, and it helps make implementing cross-platform play a lot more do-able. This asset utilizes the `On-Screen Control` class provided by the Input System package which lets you configure the button/joystick bindings according to your liking. When combined with events subscription, you don't even have to reference the control scripts just to check if it's "pressed" just to perform an action, and it also gets checked even when not called in the `Update()` method which furthermore improves the game loop's performance.
       
 <br>
 
