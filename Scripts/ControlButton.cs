@@ -29,6 +29,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
 
         [Header("Events")]
         public UnityEvent OnStartPress;
+        public UnityEvent OnDoubleTap;
         public UnityEvent OnStopPress;
         private Coroutine visualCoroutine;
 
@@ -49,8 +50,9 @@ namespace NeKoRoSYS.InputHandling.Mobile
 			}
         }
 
-        public bool touched = false;
-        public int touchId;
+        private bool touched = false;
+        private int touchId, touchAmount;
+        private readonly float maxTapInterval = 15f;
         public void OnPointerDown(PointerEventData eventData)
         {
             if (touched) return;
@@ -59,16 +61,15 @@ namespace NeKoRoSYS.InputHandling.Mobile
             if (eventData.pointerId != touchId) return;
             startPos = eventData.position;
             CheckOverlap(eventData, ExecuteEvents.pointerDownHandler);
-            SendValueToControl(1.0f);
             OnStartPress?.Invoke();
         }
 
+        internal void ResetTapAmount() => touchAmount = 0;
         public void OnPointerUp(PointerEventData eventData)
         {
             if (eventData.pointerId != touchId) return;
             touched = false;
             CheckOverlap(eventData, ExecuteEvents.pointerUpHandler);
-            SendValueToControl(0.0f);
             OnStopPress?.Invoke();
         }
 
@@ -83,12 +84,22 @@ namespace NeKoRoSYS.InputHandling.Mobile
 
         private void PressButton()
         {
+            SendValueToControl(1.0f);
+            touchAmount++;
+            CancelInvoke(nameof(ResetTapAmount));
+            Invoke(nameof(ResetTapAmount), maxTapInterval * Time.deltaTime);
+            if (touchAmount == 2)
+            {
+                touchAmount = 0;
+                OnDoubleTap?.Invoke();
+            }
             if (visualCoroutine != null) StopCoroutine(visualCoroutine);
             visualCoroutine = StartCoroutine(PlayVisuals(pressedIcon, pressedColor));
         }
 
         private void ReleaseButton()
         {
+            SendValueToControl(0.0f);
             if (visualCoroutine != null) StopCoroutine(visualCoroutine);
             visualCoroutine = StartCoroutine(PlayVisuals(releasedIcon, releasedColor));
         }
