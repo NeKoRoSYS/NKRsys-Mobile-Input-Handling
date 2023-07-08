@@ -53,7 +53,6 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
             touched = true;
             touchId = eventData.pointerId;
             if (eventData.pointerId != touchId) return;
-            isPressed = true;
             startPos = eventData.position;
             CheckOverlap(eventData, ExecuteEvents.pointerDownHandler);
             OnStartPress?.Invoke();
@@ -64,7 +63,6 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
         {
             if (eventData.pointerId != touchId) return;
             touched = false;
-            isPressed = false;
             CheckOverlap(eventData, ExecuteEvents.pointerUpHandler);
             OnStopPress?.Invoke();
         }
@@ -80,6 +78,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
 
         private void PressButton()
         {
+	    isPressed = true;
             touchAmount++;
             CancelInvoke(nameof(ResetTapAmount));
             Invoke(nameof(ResetTapAmount), maxTapInterval * Time.deltaTime);
@@ -94,6 +93,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
 
         private void ReleaseButton()
         {
+	    isPressed = false;
             if (visualCoroutine != null) StopCoroutine(visualCoroutine);
             visualCoroutine = StartCoroutine(PlayVisuals(releasedIcon, releasedColor));
         }
