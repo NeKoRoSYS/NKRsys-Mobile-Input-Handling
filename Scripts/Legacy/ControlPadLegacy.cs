@@ -10,7 +10,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
         [HideInInspector] public Vector2 delta = Vector2.zero;
         public UnityEvent<Vector2> OnTouchDrag;
         private Vector2 currentPos, lastPos;
-        private HashSet<int> availableTouchIds = new HashSet<int>();
+        private HashSet<int> availableTouchIds = new();
 
         private bool IsTouchingPad(Touch touch) => RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, touch.position);
         private void Update()
