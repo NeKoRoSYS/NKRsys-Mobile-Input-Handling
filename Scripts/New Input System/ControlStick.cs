@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -44,6 +45,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
         }
         private Vector2 rawInput = Vector2.zero;
         public Vector2 input = Vector2.zero;
+        public UnityEvent<Vector2> OnStickDrag;
         public bool FullInput { get; set; }
         [SerializeField] private float fullInputThreshold = 0.75f;
         [SerializeField] private float followThreshold = 1;
@@ -122,6 +124,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
             input = magnitude > moveThreshold ? (magnitude < fullInputThreshold ? normalized * 0.35f : normalized * 0.7f) : Vector2.zero;
             stickHandle.anchoredPosition = input * stickRange * radius;
             SendValueToControl(input);
+            OnStickDrag?.Invoke(input);
         }
 
         public void OnPointerUp(PointerEventData eventData)
@@ -133,6 +136,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
             input = Vector2.zero;
             stickHandle.anchoredPosition = Vector2.zero;
             SendValueToControl(Vector2.zero);
+            OnStickDrag?.Invoke(Vector2.zero);
         }
     }
 }

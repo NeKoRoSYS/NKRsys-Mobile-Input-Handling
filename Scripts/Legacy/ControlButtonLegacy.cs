@@ -78,7 +78,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
 
         private void PressButton()
         {
-	    isPressed = true;
+            isPressed = true;
             touchAmount++;
             CancelInvoke(nameof(ResetTapAmount));
             Invoke(nameof(ResetTapAmount), maxTapInterval * Time.deltaTime);
@@ -93,7 +93,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
 
         private void ReleaseButton()
         {
-	    isPressed = false;
+            isPressed = false;
             if (visualCoroutine != null) StopCoroutine(visualCoroutine);
             visualCoroutine = StartCoroutine(PlayVisuals(releasedIcon, releasedColor));
         }

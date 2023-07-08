@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Layouts;
-using UnityEngine.InputSystem.OnScreen;
 
 namespace NeKoRoSYS.InputHandling.Mobile.Legacy
 {
@@ -41,6 +38,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
         }
         private Vector2 rawInput = Vector2.zero;
         public Vector2 input = Vector2.zero;
+        public UnityEvent<Vector2> OnStickDrag;
         public bool FullInput { get; set; }
         [SerializeField] private float fullInputThreshold = 0.75f;
         [SerializeField] private float followThreshold = 1;
@@ -118,6 +116,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
             FullInput = magnitude > fullInputThreshold;
             input = magnitude > moveThreshold ? (magnitude < fullInputThreshold ? normalized * 0.35f : normalized * 0.7f) : Vector2.zero;
             stickHandle.anchoredPosition = input * stickRange * radius;
+            OnStickDrag?.Invoke(input);
         }
 
         public void OnPointerUp(PointerEventData eventData)
@@ -128,6 +127,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
             FullInput = false;
             input = Vector2.zero;
             stickHandle.anchoredPosition = Vector2.zero;
+            OnStickDrag?.Invoke(Vector2.zero);
         }
     }
 }
