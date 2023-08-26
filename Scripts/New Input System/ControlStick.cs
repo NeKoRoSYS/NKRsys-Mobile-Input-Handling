@@ -74,7 +74,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
             }
         }
 
-        private void Awake() => FormatControlStick();
+        private void Start() => FormatControlStick();
 
         private void FormatControlStick()
         {
