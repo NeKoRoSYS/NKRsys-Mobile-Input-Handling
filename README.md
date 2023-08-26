@@ -48,7 +48,7 @@ This project extends from the [on-screen controls](https://docs.unity3d.com/Pack
 
 <br>
 
-## Usage
+## (New Input System) Usage
 Prefabs are cool and all, but I recommend you to set up the controls from scratch like a boss!
 - ### [`ControlButton`](https://github.com/NeKoRoSYS/NKRsys-MIH/blob/main/Scripts/ControlButton.cs)
   1. Create a 2D GameObject inside the canvas.
