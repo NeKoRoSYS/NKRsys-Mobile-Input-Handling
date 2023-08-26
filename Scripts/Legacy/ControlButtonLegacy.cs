@@ -67,7 +67,6 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
                 Invoke(nameof(ResetTapAmount), maxTapInterval * Time.deltaTime);
             }
             isPressed = pressed;
-            SendValueToControl(pressed ? 1.0f : 0.0f);
             OnButtonAction?.Invoke(pressed);
             if (visualCoroutine != null) StopCoroutine(visualCoroutine);
             visualCoroutine = StartCoroutine(PlayVisuals(pressed ? pressedIcon : releasedIcon, pressed ? pressedColor : releasedColor));
