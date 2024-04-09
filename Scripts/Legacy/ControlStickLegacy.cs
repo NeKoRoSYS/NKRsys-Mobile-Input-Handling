@@ -21,7 +21,11 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
                     stickBounds.anchoredPosition = fixedPosition;
                     stickBounds.gameObject.SetActive(true);
                     inputArea.GetComponent<Image>().raycastTarget = false;
-                } else inputArea.GetComponent<Image>().raycastTarget = true;
+                } else
+                {
+                    stickBounds.gameObject.SetActive(false);
+                    inputArea.GetComponent<Image>().raycastTarget = true;
+                }
             }
         }
         [SerializeField] private StickMode stickMode;
