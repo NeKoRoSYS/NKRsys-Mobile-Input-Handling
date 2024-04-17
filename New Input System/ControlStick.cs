@@ -56,7 +56,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
             set
             {
                 fullInput = value;
-                OnStickFullInput?.Invoke();
+                OnStickFullInput?.Invoke(fullInput);
                 controlExtension?.ProcessButton(fullInput == true ? 1f : 0f);
             }
         }
@@ -76,7 +76,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
 
         [Header("Events")]
         public Action<Vector2> OnStickDrag;
-        public Action OnStickFullInput;
+        public Action<bool> OnStickFullInput;
         
         private Vector2 center = new(0.5f, 0.5f);
         private Vector2 fixedPosition;

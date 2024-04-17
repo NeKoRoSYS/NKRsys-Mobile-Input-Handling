@@ -43,7 +43,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
             set
             {
                 fullInput = value;
-                OnStickFullInput?.Invoke();
+                OnStickFullInput?.Invoke(fullInput);
             }
         }
         private Vector2 rawInput = Vector2.zero;
@@ -62,7 +62,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
 
         [Header("Events")]
         public Action<Vector2> OnStickDrag;
-        public Action OnStickFullInput;
+        public Action<bool> OnStickFullInput;
 
         private Vector2 center = new(0.5f, 0.5f);
         private Vector2 fixedPosition = Vector2.zero;
