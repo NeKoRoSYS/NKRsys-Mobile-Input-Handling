@@ -18,24 +18,22 @@ namespace NeKoRoSYS.InputHandling.Mobile
         private Image icon;
         private Sprite releasedIcon;
 
-        [Header("Input")]
+        [Header("Inputs")]
         [InputControl(layout = "Button")]
         [SerializeField] private string m_ControlPath;
-        protected override string controlPathInternal
-        {
-            get => m_ControlPath;
-            set => m_ControlPath = value;
-        }
-        private GraphicRaycaster raycaster;
+        protected override string controlPathInternal { get => m_ControlPath; set => m_ControlPath = value; }
+        [SerializeField] private ControlExtension controlExtension;
         private Vector2 startPos;
-        private bool touched = false;
-        private int touchId, touchAmount;
+        public bool touched = false;
+        public int touchId, touchAmount;
         private readonly float maxTapInterval = 15f;
 
         [Header("Events")]
         public UnityEvent<bool> OnButtonAction;
         public UnityEvent OnDoubleTap;
         private Coroutine visualCoroutine;
+        
+        private GraphicRaycaster raycaster;
 
         internal void ResetTapAmount() => touchAmount = 0;
         public void OnPointerDown(PointerEventData eventData)
@@ -64,7 +62,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
             releasedIcon = icon.sprite;
         }
 
-        private void ProcessInput(bool pressed)
+        public void ProcessInput(bool pressed)
         {
             if (pressed)
             {
@@ -75,7 +73,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
             SendValueToControl(pressed ? 1.0f : 0.0f);
             OnButtonAction?.Invoke(pressed);
             if (visualCoroutine != null) StopCoroutine(visualCoroutine);
-            visualCoroutine = StartCoroutine(PlayVisuals(pressed ? pressedIcon : releasedIcon, pressed ? pressedColor : releasedColor));
+            if (gameObject.activeInHierarchy) visualCoroutine = StartCoroutine(PlayVisuals(pressed ? pressedIcon : releasedIcon, pressed ? pressedColor : releasedColor));
         }
 
         private void CheckDoubleTap()
@@ -85,6 +83,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
             {
                 ResetTapAmount();
                 OnDoubleTap?.Invoke();
+                controlExtension?.ProcessButton(1f);
             }
         }
 

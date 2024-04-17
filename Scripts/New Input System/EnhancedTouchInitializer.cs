@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
-namespace NeKoRoSYS.InputHandling.Mobile
+namespace NeKoRoSYS.InputManagement
 {
     public static class EnhancedTouchInitializer
     {

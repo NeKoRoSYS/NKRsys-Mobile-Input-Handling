@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
@@ -8,13 +8,17 @@ namespace NeKoRoSYS.InputHandling.Mobile
 {
     public class ControlPad : MonoBehaviour
     {
-        [SerializeField] private int touchLimit = 10;
+        [Header("Inputs")]
         [HideInInspector] public Vector2 delta = Vector2.zero;
-        public UnityEvent<Vector2> OnTouchDrag;
+        [SerializeField] private int touchLimit = 10;
+        public HashSet<int> availableTouchIds = new();
         private Vector2 currentPos, lastPos;
-        private HashSet<int> availableTouchIds = new();
+    
+        [Header("Events")]
+        public Action<Vector2> OnTouchDrag;
 
         private bool IsTouchingPad(Touch touch) => RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, touch.screenPosition);
+
         private void Update()
         {
             if (Touch.activeTouches.Count == 0) return;
