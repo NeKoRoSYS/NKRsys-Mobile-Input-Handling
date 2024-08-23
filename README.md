@@ -86,6 +86,9 @@ Prefabs are cool and all, but I recommend you to set up the controls from scratc
   
 <br>
 
+## Additional Notes
+- You can implement the [`ControlExtension`](https://github.com/NeKoRoSYS/NKRsys-Mobile-Input-Handling/blob/main/New%20Input%20System/ControlExtension.cs) component to any of the provided scripts according to your liking. The code I wrote in the scripts (especially for ControlButton) are merely placeholders and you can re-write them to suit your needs.
+
 ## Sponsorship
 I am an aspiring software and game developer that currently do stuff solo, and I need funding to motivate me to do a lot better on my tasks so that I could deliver way better content. Donating is not a must, but it will be immensely cherished and appreciated!
 
