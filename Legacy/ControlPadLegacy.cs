@@ -4,18 +4,19 @@ using System.Collections.Generic;
 
 namespace NeKoRoSYS.InputHandling.Mobile.Legacy
 {
-    public class ControlPad : MonoBehaviour
+    public class ControlPadLegacy : MonoBehaviour
     {
         [Header("Inputs")]
         [HideInInspector] public Vector2 delta = Vector2.zero;
         [SerializeField] private int touchLimit = 10;
         public HashSet<int> availableTouchIds = new();
         private Vector2 currentPos, lastPos;
-
+        [Space]
         [Header("Events")]
         public Action<Vector2> OnTouchDrag;
 
-        private bool IsTouchingPad(Touch touch) => RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, touch.position);
+        private bool IsTouchingPad(Touch touch) => RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, touch.screenPosition);
+        private void OnDisable() => ForceStopTouch();
         private void Update()
         {
             if (Input.touchCount == 0) return;
@@ -23,7 +24,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
             delta = Vector2.zero;
             if (availableTouchIds.Count == 0) return;
             foreach (var touch in Input.touches)
-                { if (availableTouchIds.Contains(touch.fingerId)) ApplyTouch(touch); }
+                { if (availableTouchIds.Contains(touch.fingerId)) ProcessInput(touch); }
             OnTouchDrag?.Invoke(delta);
         }
 
@@ -38,7 +39,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
             }
         }
 
-        private void ApplyTouch(Touch touch)
+        private void ProcessInput(Touch touch)
         {
             if (touch.phase == TouchPhase.Moved)
             {
@@ -46,6 +47,14 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
                 delta += currentPos - lastPos;
                 lastPos = currentPos;
             } else if (touch.phase == TouchPhase.Stationary) delta = Vector2.zero;
+        }
+
+        public void ForceStopTouch()
+        {
+            delta = Vector2.zero;
+            currentPos = Vector2.zero;
+            lastPos = Vector2.zero;
+            availableTouchIds.Clear();
         }
     }
 }

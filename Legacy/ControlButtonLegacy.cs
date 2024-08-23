@@ -1,36 +1,34 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using System.Collections;
 using System.Collections.Generic;
+using System;
+using DG.Tweening;
 
 namespace NeKoRoSYS.InputHandling.Mobile.Legacy
 {
-    public class ControlButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    public class ControlButtonLegacy : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         [Header("Visuals")]
         [SerializeField] private Sprite pressedIcon;
         [SerializeField] private Color releasedColor = Color.white, pressedColor = Color.grey;
         [SerializeField] private bool animateSprite = true, animateColor = true;
-        private Image icon;
+        [SerializeField] private Image icon;
         private Sprite releasedIcon;
-
-        [Header("Input")]
-        public bool isPressed = false;
+        [Space]
+        [Header("Inputs")]
         private Vector2 startPos;
-        private bool touched = false;
-        private int touchId, touchAmount;
+        public bool touched = false;
+        public int touchId, touchAmount;
         private readonly float maxTapInterval = 15f;
-
+        [Space]
         [Header("Events")]
-        public UnityEvent<bool> OnButtonAction;
-        public UnityEvent OnDoubleTap;
-        private Coroutine visualCoroutine;
-        
+        public Action<bool> OnButtonAction;
+        public Action OnDoubleTap;
         private GraphicRaycaster raycaster;
 
         internal void ResetTapAmount() => touchAmount = 0;
+        private void OnDisable() => ForceStopTouch();
         public void OnPointerDown(PointerEventData eventData)
         {
             if (touched) return;
@@ -53,7 +51,6 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
         private void Start()
         {
             raycaster = FindObjectOfType<GraphicRaycaster>();
-            icon = GetComponent<Image>();
             releasedIcon = icon.sprite;
         }
 
@@ -66,8 +63,8 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
                 Invoke(nameof(ResetTapAmount), maxTapInterval * Time.deltaTime);
             }
             OnButtonAction?.Invoke(pressed);
-            if (visualCoroutine != null) StopCoroutine(visualCoroutine);
-            if (gameObject.activeInHierarchy) visualCoroutine = StartCoroutine(PlayVisuals(pressed ? pressedIcon : releasedIcon, pressed ? pressedColor : releasedColor));
+            DOTween.Kill(this);
+            if (gameObject.activeInHierarchy) PlayVisuals(pressed ? pressedIcon : releasedIcon, pressed ? pressedColor : releasedColor);
         }
 
         private void CheckDoubleTap()
@@ -80,33 +77,34 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
             }
         }
 
-        private IEnumerator PlayVisuals(Sprite targetIcon, Color targetColor)
+        private void PlayVisuals(Sprite targetIcon, Color targetColor)
         {
             if (targetIcon != null && animateSprite) icon.sprite = targetIcon;
-            if (animateColor)
-            {
-                while (icon.color != targetColor)
-                {
-                    icon.color = Color.Lerp(icon.color, targetColor, Time.deltaTime * 15f);
-                    yield return null;
-                }
-                icon.color = targetColor;
-            }
+            if (animateColor) DOTween.To(() => icon.color, x => icon.color = x, targetColor, 1.5f).SetId("ButtonVisuals");
         }
 
         public void CheckOverlap<T>(PointerEventData eventData, ExecuteEvents.EventFunction<T> eventFunction) where T : IEventSystemHandler
         {
             List<RaycastResult> results = new();
             eventData.position = startPos;
-			raycaster.Raycast(eventData, results);
-			foreach (RaycastResult result in results)
-			{
-				if (result.gameObject == gameObject) continue;
+            raycaster.Raycast(eventData, results);
+            foreach (RaycastResult result in results)
+            {
+                if (result.gameObject == gameObject) continue;
                 if (!result.gameObject.TryGetComponent(out ControlButton button)) return;
                 if (Equals(eventFunction, ExecuteEvents.pointerDownHandler) && button.touched) break;
                 else if (Equals(eventFunction, ExecuteEvents.pointerUpHandler) && !button.touched) break;
                 ExecuteEvents.Execute(result.gameObject, eventData, eventFunction);
-			}
+            }
+        }
+
+        public void ForceStopTouch()
+        {
+            touched = false;
+            touchId = 0;
+            icon.sprite = releasedIcon;
+            icon.color = releasedColor;
+            DOTween.Kill("ButtonVisuals");
         }
     }
 }

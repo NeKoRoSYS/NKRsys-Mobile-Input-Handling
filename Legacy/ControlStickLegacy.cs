@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 namespace NeKoRoSYS.InputHandling.Mobile.Legacy
 {
     public enum StickMode { Fixed, Free, Floating }
     public enum StickAxis { X, Y, Both }
-    public class ControlStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+    public class ControlStickLegacy : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
     {
         [Header("Visuals")]
         [SerializeField] private RectTransform inputArea = null;
@@ -16,9 +17,9 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
         [SerializeField] private float followThreshold = 1;
         [SerializeField] private float stickRange = 1f;
         [SerializeField] private float moveThreshold = 0.17f;
-
+        [Space]
         [Header("Inputs")]
-        [SerializeField] private StickMode stickMode;
+        [SerializeField] public StickMode stickMode;
         public StickMode StickMode
         {
             get => stickMode;
@@ -29,9 +30,10 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
                 if (stickMode == StickMode.Fixed)
                 {
                     stickBounds.anchoredPosition = fixedPosition;
-                    stickBounds.gameObject.SetActive(true);
-                    inputArea.GetComponent<Image>().raycastTarget = false;
-                } else inputArea.GetComponent<Image>().raycastTarget = true;
+                    stickHandle.anchoredPosition = Vector2.zero;
+                }
+                stickBounds.gameObject.SetActive(stickMode == StickMode.Fixed);
+                inputArea.GetComponent<Image>().raycastTarget = stickMode != StickMode.Fixed;
             }
         }
         [SerializeField] private StickAxis stickAxis = StickAxis.Both;
@@ -47,7 +49,8 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
             }
         }
         private Vector2 rawInput = Vector2.zero;
-        public Vector2 RawInput {
+        public Vector2 RawInput
+        {
             get => rawInput;
             set
             {
@@ -65,11 +68,14 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
         public Action<bool> OnStickFullInput;
 
         private Vector2 center = new(0.5f, 0.5f);
-        private Vector2 fixedPosition = Vector2.zero;
+        private Vector2 fixedPosition;
         private Canvas canvas;
         private Camera cam;
 
         private void Start() => FormatControlStick();
+
+        private void OnDisable() => ForceStopTouch();
+
         private void FormatControlStick()
         {
             canvas = GetComponentInParent<Canvas>();
@@ -80,7 +86,7 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
             stickHandle.pivot = center;
             stickHandle.anchoredPosition = Vector2.zero;
         }
-        
+
         public void OnPointerDown(PointerEventData eventData)
         {
             if (touched) return;
@@ -129,19 +135,16 @@ namespace NeKoRoSYS.InputHandling.Mobile.Legacy
             OnStickDrag?.Invoke(Vector2.zero);
         }
 
-        public void SetJoystick(int stickIndex)
+        public void SetJoystick(int stickIndex) => StickMode = (StickMode)stickIndex;
+
+        public void ForceStopTouch()
         {
-            switch (stickIndex) {
-                case 0:
-                    StickMode = StickMode.Fixed;
-                break;
-                case 1:
-                    StickMode = StickMode.Free;
-                break;
-                case 2:
-                    StickMode = StickMode.Floating;
-                break;
-            }
+            touched = false;
+            touchId = 0;
+            FullInput = false;
+            stickHandle.transform.position = Vector2.zero;
+            input = Vector2.zero;
+            stickBounds.gameObject.SetActive(!(stickMode != StickMode.Fixed));
         }
     }
 }
