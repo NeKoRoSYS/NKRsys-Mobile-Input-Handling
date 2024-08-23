@@ -8,8 +8,12 @@ Before you use this project as a base for your mobile game, I am putting this he
 ### Prerequisites
   - [The Input System Package](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.6/manual/index.html)
     - *To install: Editor > Window > Package Manager > Packages: Unity Registry > Input System*
+  - [DOTween](https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676?srsltid=AfmBOophtTUUaahaKg-tGJCyAWoKpaXn96xzi9sD6HzdY-bdnBuItAvG)
+    - *To install: Add to Assets > Open in Unity > Select which files you want to include > Import*
 ### Why use the Input System package?
-  - This asset also provide scripts that support Unity's Legacy Input System. However, using the new Input System package gives you more advantages than the legacy input system. It has more flexible features and settings that everyone can configure, and it helps make implementing cross-platform play a lot more do-able. This asset utilizes the `On-Screen Control` class provided by the Input System package which lets you configure the button/joystick bindings according to your liking. When combined with events subscription, you don't even have to reference the control scripts just to check if it's "pressed" just to perform an action, and it also gets checked even when not called in the `Update()` method which furthermore improves the game loop's performance.
+  - This asset also provide scripts that support Unity's Legacy Input System. However, using the new Input System package gives you more advantages than the Legacy Input System. It has more flexible features and settings that everyone can configure, and it helps in implementing cross-platform a lot more do-able. This asset utilizes the `On-Screen Control` component that is provided by the Input System package which lets you configure the button/joystick bindings according to your liking. When combined with events subscription, you don't even have to reference the scripts to check if the buttons are pressed just to perform an action. In other words, the scripts also get checked even when not called in the `Update()` method which furthermore improves the game loop's overall performance.
+### Why use DOTween?
+  - It's simply a better way to manage tasks that are too simple for Coroutines; the best part is that DOTween makes less to no garbage at all. This asset utilizes DOTween to animate and change button colors and sprites.
       
 <br>
 
@@ -23,7 +27,7 @@ Before you use this project as a base for your mobile game, I am putting this he
 <br>
 
 ## Features
-This project extends from the [on-screen controls](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html) that Unity's Input System package have provided by default. The following demos are using [(NKRsys-FPP-CC) NeKoRoSYS's First Person Perspective Character Controller](https://github.com/NeKoRoSYS/NKRsys-FPP-CC/blob/main) to showcase the mobile controls.
+This project extends from the [On-Screen Control](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html) components that Unity's Input System package have provided by default. The following demos are using [(NKRsys-FPP-CC) NeKoRoSYS's First Person Perspective Character Controller](https://github.com/NeKoRoSYS/NKRsys-FPP-CC/blob/main) to showcase the mobile controls.
 
 - ### Custom Button Implementation
   - [`ControlButton`](https://github.com/NeKoRoSYS/NKRsys-Mobile-Input-Handling/blob/main/Scripts/ControlButton.cs) is an extension of the [`On-Screen Button`](https://docs.unity3d.com/Packages/com.unity.inputsystem@0.9/manual/OnScreen.html#on-screen-buttons) component provided by the Input System package. It can have animated sprites and color fading!
