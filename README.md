@@ -4,7 +4,7 @@ An open-source project dedicated to providing mobile game developers a quick hea
 <br>
 
 ## Before You Use
-Before you use this project as a base for your mobile game, I am putting this here to remind you that this project is currently being actively developed and things are subject to change. Kindly star the repo before using, forking or cloning, please!
+This asset requires two packages to be installed in your project:
 ### Prerequisites
   - [The Input System Package](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.6/manual/index.html)
     - *To install: Editor > Window > Package Manager > Packages: Unity Registry > Input System*
