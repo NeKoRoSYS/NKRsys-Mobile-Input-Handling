@@ -13,12 +13,12 @@ namespace NeKoRoSYS.InputHandling.Mobile
         [SerializeField] private int touchLimit = 10;
         public HashSet<int> availableTouchIds = new();
         private Vector2 currentPos, lastPos;
-    
+        [Space]
         [Header("Events")]
         public Action<Vector2> OnTouchDrag;
 
         private bool IsTouchingPad(Touch touch) => RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, touch.screenPosition);
-
+        private void OnDisable() => ForceStopTouch();
         private void Update()
         {
             if (Touch.activeTouches.Count == 0) return;
@@ -26,7 +26,7 @@ namespace NeKoRoSYS.InputHandling.Mobile
             delta = Vector2.zero;
             if (availableTouchIds.Count == 0) return;
             foreach (var touch in Touch.activeTouches)
-                { if (availableTouchIds.Contains(touch.touchId)) ApplyTouch(touch); }
+            { if (availableTouchIds.Contains(touch.touchId)) ProcessInput(touch); }
             OnTouchDrag?.Invoke(delta);
         }
 
@@ -41,14 +41,23 @@ namespace NeKoRoSYS.InputHandling.Mobile
             }
         }
 
-        private void ApplyTouch(Touch touch)
+        private void ProcessInput(Touch touch)
         {
             if (touch.phase == TouchPhase.Moved)
             {
                 currentPos += touch.delta;
                 delta += currentPos - lastPos;
                 lastPos = currentPos;
-            } else if (touch.phase == TouchPhase.Stationary) delta = Vector2.zero;
+            }
+            else if (touch.phase == TouchPhase.Stationary) delta = Vector2.zero;
+        }
+
+        public void ForceStopTouch()
+        {
+            delta = Vector2.zero;
+            currentPos = Vector2.zero;
+            lastPos = Vector2.zero;
+            availableTouchIds.Clear();
         }
     }
 }

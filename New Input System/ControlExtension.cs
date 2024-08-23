@@ -13,10 +13,10 @@ namespace NeKoRoSYS.InputHandling.Mobile
         [InputControl(layout = "Vector2")]
         [SerializeField] private string vectorPath = "<Joystick>/stick";
         protected override string controlPathInternal { get => useVector ? vectorPath : buttonPath; set { if (useVector) vectorPath = value; else buttonPath = value; } }
-
+        [Space]
         [Header("Config")]
         public bool useVector;
-        
+
         public void ProcessButton(float value) => SendValueToControl(value);
         public void ProcessVector(Vector2 value) => SendValueToControl(value);
     }
